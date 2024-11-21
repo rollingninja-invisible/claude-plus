@@ -45,7 +45,6 @@ from shared_utils import (
 load_dotenv()
 
 
-# app = FastAPI(lifespan=lifespan, docs_url="/docs", redoc_url="/redoc")
 
 api_router = APIRouter()
 
@@ -63,7 +62,7 @@ async def lifespan(app: FastAPI):
     yield
     # Shutdown
 
-app = FastAPI(lifespan=lifespan, docs_url=None, redoc_url=None)
+app = FastAPI(lifespan=lifespan, docs_url="/docs", redoc_url="/redoc")
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
