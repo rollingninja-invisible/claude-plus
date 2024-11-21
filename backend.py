@@ -175,7 +175,68 @@ async def create_project(request: ProjectRequest, path: str):
         else:
             raise ValueError(f"Unknown project template: {request.template}")
         
-        return {"message": f"{request.template} project created successfully at {os.path.relpath(project_path, PROJECTS_DIR).replace('\\', '/')}"}
+        relative_path = os.path.relpath(project_path, PROJECTS_DIR).replace("\\", "/")
+
+@app.post("/create_project")
+async def create_project(request: ProjectRequest, path: str):
+    try:
+        project_name = f"{request.template.lower()}_project"
+        project_path = str(get_safe_path(path) / project_name)
+        os.makedirs(project_path, exist_ok=True)
+
+        if request.template == "react":
+            await create_file(os.path.join(project_path, "package.json"), '{"name": "react-app", "version": "1.0.0"}')
+            await create_file(os.path.join(project_path, "src/App.js"), 'import React from "react";\n\nfunction App() {\n  return <div>Hello, React!</div>;\n}\n\nexport default App;')
+        elif request.template == "node":
+            await create_file(os.path.join(project_path, "package.json"), '{"name": "node-app", "version": "1.0.0"}')
+            await create_file(os.path.join(project_path, "index.js"), 'console.log("Hello, Node.js!");')
+        elif request.template == "python":
+            await create_file(os.path.join(project_path, "main.py"), 'print("Hello, Python!")')
+
+@app.post("/create_project")
+async def create_project(request: ProjectRequest, path: str):
+    try:
+        # Create project directory
+        project_name = f"{request.template.lower()}_project"
+        project_path = str(get_safe_path(path) / project_name)
+        os.makedirs(project_path, exist_ok=True)
+
+        # Handle different project templates
+        if request.template == "react":
+            await create_file(os.path.join(project_path, "package.json"), '{"name": "react-app", "version": "1.0.0"}')
+            await create_file(
+                os.path.join(project_path, "src/App.js"),
+                'import React from "react";\n\nfunction App() {\n  return <div>Hello, React!</div>;\n}\n\nexport default App;'
+            )
+        elif request.template == "node":
+            await create_file(os.path.join(project_path, "package.json"), '{"name": "node-app", "version": "1.0.0"}')
+            await create_file(os.path.join(project_path, "index.js"), 'console.log("Hello, Node.js!");')
+        elif request.template == "python":
+            await create_file(os.path.join(project_path, "main.py"), 'print("Hello, Python!")')
+            await create_file(os.path.join(project_path, "requirements.txt"), '')
+        else:
+            raise ValueError(f"Unknown project template: {request.template}")
+
+        # Normalize the project path for the response
+        relative_path = os.path.relpath(project_path, PROJECTS_DIR).replace("\\", "/")
+        return {"message": f"{request.template} project created successfully at {relative_path}"}
+
+    except Exception as e:
+        logger.error(f"Error creating project: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error creating project: {str(e)}")
+            await create_file(os.path.join(project_path, "requirements.txt"), '')
+        else:
+            raise ValueError(f"Unknown project template: {request.template}")
+
+        # Normalize the project path for the response
+        relative_path = os.path.relpath(project_path, PROJECTS_DIR).replace("\\", "/")
+        return {"message": f"{request.template} project created successfully at {relative_path}"}
+
+    except Exception as e:
+        logger.error(f"Error creating project: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error creating project: {str(e)}")
+return {"message": f"{request.template} project created successfully at {relative_path}"}
+
     except Exception as e:
         logger.error(f"Error creating project: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Error creating project: {str(e)}")
