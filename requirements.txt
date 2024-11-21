@@ -9,3 +9,5 @@ fastapi
 uvicorn
 pytest
 httpx
+python-multipart
+
