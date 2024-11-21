@@ -45,7 +45,7 @@ from shared_utils import (
 load_dotenv()
 
 
-# app = FastAPI()
+# app = FastAPI(lifespan=lifespan, docs_url="/docs", redoc_url="/redoc")
 
 api_router = APIRouter()
 
