@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Box, VStack, Text, IconButton, Switch, Flex, SimpleGrid, Table, Thead, Tbody, Tr, Th, Td, Checkbox
 } from '@chakra-ui/react';

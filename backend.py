@@ -115,6 +115,10 @@ class DirectoryContents(BaseModel):
 # Conversation history
 conversation_history = []
     
+@app.get("/")
+async def root():
+    return {"message": "Claude Plus backend is running!"}
+
 @app.post("/automode")
 async def start_automode(request: Request):
     automode_request = AutomodeRequest(**request.json())

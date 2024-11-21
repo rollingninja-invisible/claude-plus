@@ -1,0 +1,170 @@
+Detailed Comparison Report: AB vs AT Scene Breakdowns
+
+General Differences:
+1. Country: AB uses "USA", AT uses "UNITED STATES" consistently.
+2. AT often provides more detailed notes and set information.
+3. Character listings sometimes differ in detail between the two files.
+
+Detailed Scene-by-Scene Comparison:
+
+Scene 1.1:
+- Characters: AB: "JACK, ROOSTER, FEMALE INMATE, GUARD" | AT: "JACK, ROOSTER, GUARD, FEMALE INMATE (O.S.)"
+- Notes: AT adds "Pringles can with buttom cut off as a prop, stained guard uniform"
+
+Scene 1.2:
+- Characters: AB: "JACK, ROOSTER, RELEASE GUARD, inmates" | AT: "RELEASE GUARD, JACK, ROOSTER"
+- Profanity: AB: YES | AT: NO
+
+Scene 1.3:
+- Characters: AB: "JACK, ROOSTER, RELEASE GUARD, male and female inmates, GLORIA" | AT: "Male and female inmates, RELEASE GUARD, JACK, GLORIA, ROOSTER"
+- Time (from header): AB: "DAY (D1)" | AT: "LATER (D1)"
+- Scene length: AB: 5/8 | AT: 6/8
+
+Scene 1.4:
+- Scene length: AB: 6/8 | AT: 4/8
+- Notes: AT adds "Would need prison phone as a prop"
+
+Scene 1.5:
+- No significant differences
+
+Scene 1.6:
+- Characters: AT adds "GLORIA"
+- Scene length: AB: 4/8 | AT: 3/8
+- Notes: AT adds "Barb might continue smoking for continuity purposes"
+
+Scene 1.7:
+- No significant differences
+
+Scene 1.8:
+- Scene length: AB: 1 | AT: 1
+- Profanity: AB: YES | AT: YES
+
+Scene 1.9:
+- Characters: AB: "ROOSTER, GLORIA" | AT: "JACK, ROOSTER, BARB, GLORIA"
+
+Scene 1.10:
+- Scene length: AB: 7/8 | AT: 5/8
+- Profanity: AB: YES | AT: NO
+
+Scene 1.11:
+- Scene length: AB: 2 1/8 | AT: 2 1/8
+- Vehicles: AB: "AMC PACER / The Pacer, Tesla" | AT: "AMC PACER, Tesla"
+- Notes: Different emphasis on intensity (stealing packages)
+
+Scene 1.12:
+- No significant differences
+
+Scene 1.13:
+- Alcohol/drugs/smoking: AB: YES | AT: NO
+
+Scene 1.14:
+- Scene length: AB: 2/8 | AT: 3/8
+- Profanity: AB: YES | AT: NO
+
+Scene 1.15:
+- Notes: AT adds "Painting of Barb, 5-year old rooster and dead husband"
+
+Scene 1.16:
+- Characters: AB: "BARB, JACK, GLORIA" | AT: "JACK, BARB, GLORIA"
+
+Scene 1.17:
+- Frightening/intense moment: AB: NO | AT: YES
+- Notes: AT mentions "Bathroom humor reference might be seen as intense by some"
+
+Scene 1.18:
+- Notes: AB mentions "Indirect references to sex, drinking, and violence" | AT states "Drugs, sex, and violence are referenced"
+
+Scene 1.19:
+- Characters: AB: "BARB" | AT: "BARB, JACK, GLORIA"
+
+Scene 1.20:
+- Scene length: AB: 5/8 | AT: 6/8
+
+Scene 1.21:
+- Characters: AB: "ROOSTER, GLORIA, BARB" | AT: "ROOSTER, BARB, GLORIA"
+- Profanity: AB: YES | AT: NO
+
+Scene 1.22:
+- Has exterior?: AB: YES | AT: NO
+- Characters: Slight differences in listing order and details
+- Notes: AT adds "Children on set"
+
+Scene 1.23:
+- Scene length: AB: 4 2/8 | AT: 4 1/8
+- Sex/nudity: AB: YES | AT: YES
+- Violence: AB: NO | AT: NO
+- Profanity: AB: YES | AT: NO
+- Notes: Different emphasis on intensity
+
+Scene 1.24-1.25:
+- No significant differences
+
+Scene 1.26:
+- Scene length: AB: 1 | AT: 1
+- Profanity: AB: YES | AT: YES
+- Notes: AT specifies "Weapons on set: gun"
+
+Scene 1.27:
+- Scene length: AB: 5/8 | AT: 6/8
+- Vehicles: AB: "different cars parked on the road" | AT: "different cars parked on the road"
+
+Scene 1.28:
+- Scene length: AB: 4/8 | AT: 5/8
+- Characters: AB includes "INMATE STEVE", AT doesn't
+- Vehicles: AB: "stolen car, his car" | AT: "Melvin's car (unspecified)"
+- Profanity: AB: YES | AT: NO
+- Frightening/intense moment: AB: YES | AT: YES
+
+Scene 1.29:
+- Characters: AB: "ROOSTER, JACK, INMATE ED, MELVIN" | AT: "JACK, ROOSTER, MELVIN, INMATE ED"
+- Scene length: AB: 3/8 | AT: 4/8
+
+Scene 1.30:
+- Is night?: AB: YES | AT: [blank]
+- Scene length: AB: 3/8 | AT: 3/8
+
+Scene 1.31:
+- Scene length: AB: 1 1/8 | AT: 1 2/8
+- Characters: Slight differences in listing order
+- Sex/nudity: AB: YES | AT: YES
+- Violence: AB: YES | AT: YES
+- Profanity: AB: YES | AT: NO
+- Alcohol/drugs/smoking: AB: YES | AT: YES
+
+Scene 1.32:
+- Scene length: AB: 4/8 | AT: 5/8
+- Vehicles: AB: "car" | AT: "the car"
+- Notes: AT adds "We also see them return the car they stole. No specifics on the car."
+
+Scene 1.33:
+- Scene length: AB: 4/8 | AT: 5/8
+- Characters: AT adds "MELVIN"
+- Profanity: AB: YES | AT: NO
+- Alcohol/drugs/smoking: AB: YES | AT: NO
+
+Scene 1.34:
+- Scene length: AB: 5/8 | AT: 6/8
+- Time of Day: AB: DAY | AT: DAY
+- Is night?: AB: YES | AT: NO
+- Characters: Slight differences in listing order
+- Vehicles: AB: "car they stole" | AT: [blank]
+- Profanity: AB: YES | AT: NO
+
+Scenes 1.35-1.46:
+- No significant differences
+
+Scene 1.47:
+- Has exterior?: AB: UNSPECIFIED | AT: NO
+- Characters: Slight differences in listing
+- Notes: Different emphasis on potential issues (Trump footage, vomiting reference)
+
+Scene 1.48:
+- Has interior?: AB: YES | AT: NO
+- Scene length: AB: 3/8 | AT: 4/8
+- Characters: AB: "BARB, ROOSTER, JACK" | AT: "BARB, ROOSTER, Jack"
+- Notes: AB mentions potential stunt coordinator needed
+
+Scene 1.49:
+- No significant differences
+
+This report highlights the main differences between the two scene breakdowns. The discrepancies mainly involve slight variations in scene lengths, character listings, content warnings, and additional notes. The AT file generally provides more detailed production-related notes, while the AB file sometimes includes more specific content warnings.
