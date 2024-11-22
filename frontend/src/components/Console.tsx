@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Box, Input, VStack, Text, useColorMode } from '@chakra-ui/react';
 
-const API_URL = 'http://127.0.0.1:8000';
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface TerminalLine {
   content: string;
@@ -30,7 +30,7 @@ const Console: React.FC = () => {
 
   const fetchCurrentDirectory = async () => {
     try {
-      const response = await axios.get(`${API_URL}/api/console/cwd`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/console/cwd`);
       setCurrentDirectory(response.data.cwd);
     } catch (error) {
       console.error('Error fetching current directory:', error);
@@ -55,7 +55,7 @@ const Console: React.FC = () => {
     }
 
     try {
-      const response = await axios.post(`${API_URL}/api/console/execute`, { command: input });
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/console/execute`, { command: input });
       if (response.data.result) {
         addToHistory(response.data.result, false);
       }
