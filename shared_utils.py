@@ -12,14 +12,13 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Claude Plus.  If not, see <https://www.gnu.org/licenses/>.
+
 import os
 import json
 import asyncio
-# import re
 import logging
 import platform
 import base64
-# from typing import Dict, Any
 import requests
 from pathlib import Path
 from PIL import Image
@@ -30,10 +29,7 @@ from project_state import project_state, save_state_to_file, update_project_stat
 from urllib.parse import urlparse
 from datetime import datetime
 
-
-
 logger = logging.getLogger(__name__)
-
 
 system_prompt = """
 You are Claude, an AI assistant specializing in helping users with a wide range of inquiries. Your key capabilities include:
@@ -81,6 +77,7 @@ Additional Guidelines:
 4. Use the search tool for current information, then summarize results in context.
 
 Always tailor your responses to the user's specific needs and context, focusing on providing accurate, helpful, and detailed assistance.
+"""
 
 def get_safe_path(path: str) -> Path:
     abs_projects_dir = Path(PROJECTS_DIR).resolve()
@@ -388,4 +385,3 @@ async def delete_file(path: str) -> str:
     except Exception as e:
         logger.error(f"Error deleting file: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Error deleting file: {str(e)}")
-
