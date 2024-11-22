@@ -22,7 +22,7 @@ import Console from './components/Console';
 import { FileItem } from './types';
 
 //const API_URL = '/api';
-const API_URL = 'http://127.0.0.1:8000';
+const API_URL = import.meta.env.VITE_API_URL;
 
 type MessageType = {
   role: string;
@@ -88,14 +88,14 @@ function App() {
       const formData = new FormData();
       formData.append('file', uploadedFile);
       try {
-        const response = await axios.post(`${API_URL}/upload`, formData, {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/upload`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         const successMessage = `File uploaded: ${uploadedFile.name}`;
         setMessages((prev) => [...prev, { role: 'system', content: successMessage }]);
 
         // Send the file contents to the chat endpoint
-        const chatResponse = await axios.post(`${API_URL}/chat`, {
+        const chatResponse = await axios.post(`${import.meta.env.VITE_API_URL}/chat`, {
           message: `File uploaded: ${uploadedFile.name}\n\nContents:\n${response.data.file_contents}`
         });
         setMessages((prev) => [...prev, { role: 'assistant', content: chatResponse.data.response }]);
@@ -124,7 +124,7 @@ function App() {
       const formData = new FormData();
       formData.append('file', file);
       try {
-        const response = await axios.post(`${API_URL}/analyze_image`, formData, {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/analyze_image`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         setMessages((prev) => [...prev, { role: 'assistant', content: `Image Analysis:\n${response.data.analysis}` }]);
@@ -147,7 +147,7 @@ function App() {
             setMessages(prev => [...prev, { role: 'user', content: input }]);
             setInput('');
             console.log("Starting automode");
-            const eventSource = new EventSource(`${API_URL}/automode?message=${encodeURIComponent(input)}`);
+            const eventSource = new EventSource(`${import.meta.env.VITE_API_URL}/automode?message=${encodeURIComponent(input)}`);
             eventSource.onmessage = (event) => {
                 console.log("Received SSE event:", event);
                 const data = JSON.parse(event.data);
@@ -194,7 +194,7 @@ function App() {
     if (searchQuery.trim()) {
       setMessages((prev) => [...prev, { role: 'user', content: `Searching for: ${searchQuery}`, isHtml: false }]);
       try {
-        const response = await axios.post(`${API_URL}/search`, { query: searchQuery });
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/search`, { query: searchQuery });
         setMessages((prev) => [
           ...prev,
           { role: 'assistant', content: response.data.results, isHtml: true }
@@ -215,7 +215,7 @@ function App() {
     if (input.trim()) {
       setMessages(prev => [...prev, { role: 'user', content: input }]);
       try {
-        const response = await axios.post(`${API_URL}/chat`, { message: input });
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/chat`, { message: input });
         setMessages(prev => [
           ...prev,
           { role: 'assistant', content: response.data.response }
@@ -230,7 +230,7 @@ function App() {
 
   const listFiles = async (path: string) => {
     try {
-      const response = await axios.get(`${API_URL}/list_files`, { params: { path } });
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/list_files`, { params: { path } });
       setFiles(response.data.files || []);
       setCurrentDirectory(path);
     } catch (error) {
@@ -254,7 +254,7 @@ function App() {
     const folderName = prompt('Enter folder name:');
     if (folderName) {
       try {
-        await axios.post(`${API_URL}/create_folder`, null, { params: { path: `${currentDirectory}/${folderName}` } });
+        await axios.post(`${import.meta.env.VITE_API_URL}/create_folder`, null, { params: { path: `${currentDirectory}/${folderName}` } });
         listFiles(currentDirectory);
       } catch (error) {
         console.error('Error creating folder:', error);
@@ -266,7 +266,7 @@ function App() {
     const fileName = prompt('Enter file name:');
     if (fileName) {
       try {
-        await axios.post(`${API_URL}/create_file`, null, { params: { path: `${currentDirectory}/${fileName}` } });
+        await axios.post(`${import.meta.env.VITE_API_URL}/create_file`, null, { params: { path: `${currentDirectory}/${fileName}` } });
         listFiles(currentDirectory);
       } catch (error) {
         console.error('Error creating file:', error);
@@ -279,7 +279,7 @@ function App() {
       const filePath = currentDirectory === '/' 
         ? `/${fileName}` 
         : `${currentDirectory}/${fileName}`;
-      const response = await axios.get(`${API_URL}/read_file`, { params: { path: filePath } });
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/read_file`, { params: { path: filePath } });
       setSelectedFile(fileName);
       setFileContent(response.data.content);
       setOriginalContent(response.data.content);
@@ -298,7 +298,7 @@ function App() {
 
   const saveFile = async () => {
     try {
-      const response = await axios.post(`${API_URL}/write_file`, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/write_file`, {
         content: fileContent
       }, {
         params: {
@@ -326,7 +326,7 @@ function App() {
     }
 
     try {
-      await axios.delete(`${API_URL}/delete_file`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/delete_file`, {
         params: { path: `${currentDirectory}/${selectedFile}` }
       });
       listFiles(currentDirectory);
@@ -363,7 +363,7 @@ function App() {
 
   const createProjectTemplate = async (templateName: string) => {
     try {
-      await axios.post(`${API_URL}/create_project`,
+      await axios.post(`${import.meta.env.VITE_API_URL}/create_project`,
         { template: templateName },
         { params: { path: currentDirectory } }
       );
@@ -379,7 +379,7 @@ function App() {
   const clearMessages = async () => {
     try {
         setMessages([]);
-        await axios.post(`${API_URL}/clear_state`);
+        await axios.post(`${import.meta.env.VITE_API_URL}/clear_state`);
         toast({
             title: "Chat and project state cleared.",
             description: "You can start a new project.",
@@ -404,7 +404,7 @@ function App() {
     setIsLoading(true);
     try {
       const filePath = currentDirectory === '.' ? fileName : `${currentDirectory}/${fileName}`;
-      const response = await axios.post(`${API_URL}/chat`, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/chat`, {
         message: `The file ${filePath} is located in the projects directory. Please read this file, then provide detailed information about the file contents for the project containing this file. Include any necessary steps for installing dependencies and executing the code.`
       });
       setMessages(prev => [...prev, { role: 'assistant', content: `Claude: ${response.data.response}` }]);
@@ -420,7 +420,7 @@ function App() {
 
   const handleDownloadProjects = async () => {
     try {
-      const response = await axios.get(`${API_URL}/api/download_projects`, { 
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/download_projects`, { 
         responseType: 'blob',
         timeout: 30000 // 30 seconds timeout
       });
