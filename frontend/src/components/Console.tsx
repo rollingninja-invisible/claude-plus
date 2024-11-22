@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Box, Input, VStack, Text, useColorMode } from '@chakra-ui/react';
 
-const API_URL = import.meta.env.VITE_API_URL;
 
 interface TerminalLine {
   content: string;
