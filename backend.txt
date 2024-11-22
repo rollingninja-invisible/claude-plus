@@ -586,7 +586,7 @@ async def pip_install(request: CommandRequest):
             check=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-            executable=await get_shell()
+            executable=get_shell()
         )
         output = result.stdout.decode('utf-8') + result.stderr.decode('utf-8')
         return {"result": output}
