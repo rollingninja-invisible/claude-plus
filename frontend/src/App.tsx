@@ -21,8 +21,6 @@ import FileListing from './FileListing';
 import Console from './components/Console';
 import { FileItem } from './types';
 
-//const API_URL = '/api';
-const API_URL = import.meta.env.VITE_API_URL;
 
 type MessageType = {
   role: string;
