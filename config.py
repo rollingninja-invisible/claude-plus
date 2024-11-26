@@ -11,17 +11,25 @@ SEARXNG_URL = os.getenv("SEARXNG_URL", None)
 
 CLAUDE_MODEL = os.getenv("CLAUDE_MODEL", "claude-3-5-sonnet-20240620")
 
-SEARCH_RESULTS_LIMIT = int(os.getenv('SEARXNG_RESULTS', '5'))
+SEARCH_RESULTS_LIMIT = int(os.getenv("SEARXNG_RESULTS", "5"))
 
 
 SEARCH_PROVIDER = os.getenv("SEARCH_PROVIDER", "SEARXNG").upper()
 
+GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
+
+GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS")
 
 tavily_client = TavilyClient(api_key=TAVILY_API_KEY)
 
 # Initialize Tavily client if needed
 if SEARCH_PROVIDER == "TAVILY":
     from tavily import TavilyClient
+
     tavily_client = TavilyClient(api_key=TAVILY_API_KEY)
 
 
