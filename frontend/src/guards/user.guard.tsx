@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { flexbox, useToast } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
 import { GoogleLogin } from '@react-oauth/google';
 import { useEffect } from 'react';
 import { UserGuardProps } from '../types'; // Importing the type
@@ -54,13 +54,15 @@ const UserGuard = ({ children }: UserGuardProps) => {
         isClosable: true,
       });
     } catch (error) {
-      if (error instanceof Error) {
+      if (axios.isAxiosError(error)) {
+        const errorDetail = error.response?.data?.detail;
+
         toast({
           title: 'Error logging in!',
           description:
-            error.response.data.detail == 'Unauthorized Domain'
+            errorDetail === 'Unauthorized Domain'
               ? 'Invalid domain email'
-              : error.response.data.detail == 'Token has expired'
+              : errorDetail === 'Token has expired'
               ? 'Token Expired. Please login again'
               : 'An error occurred during login.',
           status: 'error',
@@ -68,7 +70,7 @@ const UserGuard = ({ children }: UserGuardProps) => {
           isClosable: true,
         });
       } else {
-        // Handle the case where the error is not an instance of Error
+        // Handle the case where the error is not an AxiosError
         toast({
           title: 'Error logging in!',
           description: 'An unknown error occurred.',

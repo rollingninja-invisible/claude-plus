@@ -278,8 +278,8 @@ def decode_refresh_token(refresh_token: str):
         return payload
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Refresh token expired")
-    except jwt.JWTError:
-        raise HTTPException(status_code=400, detail="Invalid refresh token")
+    except Exception:
+        raise HTTPException(status_code=401, detail="Invalid refresh token")
 
 
 @app.post("/auth/refresh")

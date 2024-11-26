@@ -46,7 +46,6 @@ export const createAxiosInstance = (
         } catch (refreshError) {
           // If refresh fails, clear tokens and redirect to login
           clearState();
-          window.location.href = '/'; // Or use React Router for navigation
         }
       }
 
