@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
 import { Box, Input, VStack, Text, useColorMode } from '@chakra-ui/react';
-
+import { useAuth } from '../AuthContext';
+import { createAxiosInstance } from './axiosInstance';
 
 interface TerminalLine {
   content: string;
@@ -15,9 +15,18 @@ const Console: React.FC = () => {
   const { colorMode } = useColorMode();
   const terminalRef = useRef<HTMLDivElement>(null);
 
+  const { accessToken, refreshToken, setTokens, clearState } = useAuth();
+
+  const axiosInstance = createAxiosInstance(
+    accessToken,
+    refreshToken,
+    setTokens,
+    clearState
+  );
+
   useEffect(() => {
     (async () => {
-        await fetchCurrentDirectory();
+      await fetchCurrentDirectory();
     })();
   }, []);
 
@@ -29,7 +38,7 @@ const Console: React.FC = () => {
 
   const fetchCurrentDirectory = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/console/cwd`);
+      const response = await axiosInstance.get(`/api/console/cwd`);
       setCurrentDirectory(response.data.cwd);
     } catch (error) {
       console.error('Error fetching current directory:', error);
@@ -38,7 +47,7 @@ const Console: React.FC = () => {
   };
 
   const addToHistory = (content: string, isCommand: boolean) => {
-    setHistory(prev => [...prev, { content, isCommand }]);
+    setHistory((prev) => [...prev, { content, isCommand }]);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -46,7 +55,7 @@ const Console: React.FC = () => {
     if (!input.trim()) return;
 
     addToHistory(`${currentDirectory}$ ${input}`, true);
-    
+
     if (input.trim().toLowerCase() === 'clear') {
       setHistory([]);
       setInput('');
@@ -54,7 +63,10 @@ const Console: React.FC = () => {
     }
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/console/execute`, { command: input });
+      const response = await axiosInstance.post(
+        `${import.meta.env.VITE_API_URL}/api/console/execute`,
+        { command: input }
+      );
       if (response.data.result) {
         addToHistory(response.data.result, false);
       }
@@ -63,25 +75,28 @@ const Console: React.FC = () => {
       }
     } catch (error) {
       console.error('Error executing command:', error);
-      addToHistory('Error executing command. Please check the console for details.', false);
+      addToHistory(
+        'Error executing command. Please check the console for details.',
+        false
+      );
     }
 
     setInput('');
   };
 
   return (
-    <VStack spacing={4} align="stretch" height="100%">
+    <VStack spacing={4} align='stretch' height='100%'>
       <Box
         ref={terminalRef}
         bg={colorMode === 'dark' ? 'gray.800' : 'gray.100'}
         color={colorMode === 'dark' ? 'white' : 'black'}
         p={4}
-        borderRadius="md"
-        height="calc(80vh - 200px)"
-        overflowY="auto"
-        fontFamily="monospace"
-        whiteSpace="pre-wrap"
-        textAlign="left"
+        borderRadius='md'
+        height='calc(80vh - 200px)'
+        overflowY='auto'
+        fontFamily='monospace'
+        whiteSpace='pre-wrap'
+        textAlign='left'
       >
         {history.map((line, index) => (
           <Text key={index} fontWeight={line.isCommand ? 'bold' : 'normal'}>
