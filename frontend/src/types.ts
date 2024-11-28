@@ -19,3 +19,11 @@ export interface InitializeGuardProps {
 export interface UserGuardProps {
   children: React.ReactNode;
 }
+
+export type ToastOptions = {
+  title: string;
+  description: string;
+  status?: 'info' | 'warning' | 'success' | 'error' | 'loading';
+  duration?: number;
+  isClosable?: boolean;
+};

@@ -30,6 +30,7 @@ import {
   Progress,
   Textarea,
   useToast,
+  Image,
 } from '@chakra-ui/react';
 import {
   SunIcon,
@@ -48,7 +49,7 @@ import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import './App.css';
 import FileListing from './FileListing';
 import Console from './components/Console';
-import { FileItem } from './types';
+import { FileItem, ToastOptions } from './types';
 import { createAxiosInstance } from './components/axiosInstance';
 import { useAuth } from './AuthContext';
 
@@ -85,13 +86,31 @@ const ClaudeApp = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const toast = useToast();
 
-  const { accessToken, refreshToken, setTokens, clearState } = useAuth();
+  const { profile, accessToken, refreshToken, setTokens, clearState } =
+    useAuth();
+
+  const createToast = ({
+    title,
+    description,
+    status = 'success',
+    duration = 5000,
+    isClosable = true,
+  }: ToastOptions) => {
+    toast({
+      title,
+      description,
+      status,
+      duration,
+      isClosable,
+    });
+  };
 
   const axiosInstance = createAxiosInstance(
     accessToken,
     refreshToken,
     setTokens,
-    clearState
+    clearState,
+    createToast
   );
 
   useEffect(() => {
@@ -625,6 +644,24 @@ const ClaudeApp = () => {
             onClick={toggleColorMode}
             aria-label='Toggle color mode'
           />
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              icon={
+                <Image
+                  src={profile?.picture}
+                  boxSize='40px'
+                  borderRadius='inherit'
+                  alt='Toggle color mode'
+                />
+              }
+              aria-label='profile'
+              size='sm'
+            ></MenuButton>
+            <MenuList>
+              <MenuItem onClick={() => clearState()}>Logout</MenuItem>
+            </MenuList>
+          </Menu>
         </HStack>
       </Flex>
       <Flex
