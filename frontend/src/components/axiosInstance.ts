@@ -1,14 +1,14 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import { refreshTokens } from './refreshTokens';
-import { ToastOptions } from '../types';
+import { AxiosInstanceParams } from '../types';
 
-export const createAxiosInstance = (
-  accessToken: string | null,
-  refreshToken: string | null,
-  setTokens: (accessToken: string, refreshToken: string) => void,
-  clearState: () => void,
-  createToast: (options: ToastOptions) => void
-) => {
+export const createAxiosInstance = ({
+  accessToken,
+  refreshToken,
+  setTokens,
+  clearState,
+  createToast,
+}: AxiosInstanceParams): AxiosInstance => {
   let isRefreshing = false;
   let refreshSubscribers: ((token: string) => void)[] = [];
 

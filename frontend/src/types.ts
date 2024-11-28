@@ -27,3 +27,11 @@ export type ToastOptions = {
   duration?: number;
   isClosable?: boolean;
 };
+
+export interface AxiosInstanceParams {
+  accessToken: string | null;
+  refreshToken: string | null;
+  setTokens: (accessToken: string, refreshToken: string) => void;
+  clearState: () => void;
+  createToast: (options: ToastOptions) => void;
+}

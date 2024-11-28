@@ -105,13 +105,13 @@ const ClaudeApp = () => {
     });
   };
 
-  const axiosInstance = createAxiosInstance(
+  const axiosInstance = createAxiosInstance({
     accessToken,
     refreshToken,
     setTokens,
     clearState,
-    createToast
-  );
+    createToast,
+  });
 
   useEffect(() => {
     (async () => {
@@ -896,7 +896,7 @@ const ClaudeApp = () => {
                 </VStack>
               </TabPanel>
               <TabPanel>
-                <Console />
+                <Console createToast={createToast} />
               </TabPanel>
             </TabPanels>
           </Tabs>

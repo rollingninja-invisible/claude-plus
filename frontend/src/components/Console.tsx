@@ -2,13 +2,18 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Box, Input, VStack, Text, useColorMode } from '@chakra-ui/react';
 import { useAuth } from '../AuthContext';
 import { createAxiosInstance } from './axiosInstance';
+import { ToastOptions } from '../types';
 
 interface TerminalLine {
   content: string;
   isCommand: boolean;
 }
 
-const Console: React.FC = () => {
+interface ConsoleProps {
+  createToast: (options: ToastOptions) => void;
+}
+
+const Console: React.FC<ConsoleProps> = ({ createToast }) => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<TerminalLine[]>([]);
   const [currentDirectory, setCurrentDirectory] = useState('');
@@ -17,12 +22,13 @@ const Console: React.FC = () => {
 
   const { accessToken, refreshToken, setTokens, clearState } = useAuth();
 
-  const axiosInstance = createAxiosInstance(
+  const axiosInstance = createAxiosInstance({
     accessToken,
     refreshToken,
     setTokens,
-    clearState
-  );
+    clearState,
+    createToast,
+  });
 
   useEffect(() => {
     (async () => {
